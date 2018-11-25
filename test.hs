@@ -31,3 +31,26 @@ addVectors (a, b) (c, d) = (a + c, b + d)
 customSum::(Num a) => [a] -> a
 customSum [] = 0
 customSum (x:rest) = x + customSum rest
+
+bmiTell::(RealFloat a) => a -> a-> String
+bmiTell weight height
+    | weight / height ^ 2 <= 18.5 = "You're underweight, you emo, you!"
+    | weight / height ^ 2 <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
+    | weight / height ^ 2 <= 30.0 = "You're fat! Lose some weight, fatty!"
+    | otherwise                   = "You're a whale, congratulations!"
+
+customMax::(Ord a) => a -> a -> a
+customMax a b
+    | a > b = a
+    | otherwise  = b
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+     where (f:_) = firstname
+           (l:_) = lastname
+
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^2
+    in  sideArea + 2 * topArea
