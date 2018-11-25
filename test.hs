@@ -25,7 +25,7 @@ fibbonachi 0 = 0
 fibbonachi 1 = 1
 fibbonachi x = fibbonachi(x-1) + fibbonachi(x-2)
 
-addVectors::(Num a, Num a) => (a, a) -> (a, a) -> (a, a)
+addVectors::(Num a) => (a, a) -> (a, a) -> (a, a)
 addVectors (a, b) (c, d) = (a + c, b + d)
 
 customSum::(Num a) => [a] -> a
@@ -54,3 +54,27 @@ cylinder r h =
     let sideArea = 2 * pi * r * h
         topArea = pi * r ^2
     in  sideArea + 2 * topArea
+
+describeList :: [a] -> String
+describeList xs = "The list is " ++ case xs of [] -> "empty."
+                                               [x] -> "a singleton list."
+                                               xs -> "a longer list."
+
+recursiveMax :: (Ord a) => [a] -> a
+recursiveMax [] = error "Maximum of an empty list"
+recursiveMax [x] = x
+recursiveMax (x:tail) = max x (recursiveMax tail)
+
+recursiveReplicate :: (Ord n, Num n) => n -> a -> [a]
+recursiveReplicate n x
+    | n <= 0  = []
+    | otherwise  = x:recursiveReplicate (n - 1) x
+
+recursiveTake :: (Ord n, Num n) => n -> [a] -> [a]
+recursiveTake n _ | n <= 0 = []
+recursiveTake _ [] = []
+recursiveTake n (x:tail) = x:recursiveTake (n-1) tail
+
+recursiveReverse :: [a] -> [a]
+recursiveReverse [] = []
+recursiveReverse (x:tail) = recursiveReverse tail ++ [x]
