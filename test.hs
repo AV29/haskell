@@ -97,3 +97,10 @@ recursiveZip (x:xs) (y:ys) = (x,y):recursiveZip xs ys
 recursiveElem :: (Eq a) => a -> [a] -> Bool
 recursiveElem val [] = False
 recursiveElem val (x:tail) |  x == val = True | otherwise = val `recursiveElem` tail
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (current:tail) =
+    let smaller = quicksort [a | a <- tail, a <= current]
+        bigger = quicksort [a | a <- tail, a > current]
+    in smaller ++ [current] ++ bigger
