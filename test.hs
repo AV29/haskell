@@ -104,3 +104,16 @@ quicksort (current:tail) =
     let smaller = quicksort [a | a <- tail, a <= current]
         bigger = quicksort [a | a <- tail, a > current]
     in smaller ++ [current] ++ bigger
+
+tripleProduct :: (Num a) => a -> a -> a -> a
+tripleProduct x y z = x*y*z
+
+
+multiplyByTen :: (Num a) => a -> a
+multiplyByTen = (*10)
+
+compareToTen :: (Ord a, Num a) => a -> Ordering
+compareToTen = compare 10
+
+isUpperAlphaNum :: Char -> Bool
+isUpperAlphaNum = (`elem` ['A'..'Z'])
